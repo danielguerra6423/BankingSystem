@@ -1,10 +1,10 @@
 package com.Cesde.BankingSystem.Modelo;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "person")
@@ -27,7 +27,10 @@ public  class MPerson{
     @Column(length = 11,nullable = false)
     private int failedAttempts;
 
-    //Relacion entre tablas
+    //Relacion entre las tablas persona y cuenta
+    @OneToMany(mappedBy = "persona")
+    @JsonManagedReference
+    private List<MCuenta> cuentas;
 
 
     //Constructores

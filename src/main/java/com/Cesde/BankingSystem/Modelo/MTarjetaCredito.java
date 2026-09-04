@@ -1,9 +1,7 @@
 package com.Cesde.BankingSystem.Modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,7 +28,12 @@ public class MTarjetaCredito {
     private Boolean activo;
     @Column(nullable = false)
     private LocalDateTime createdat;
-     //Relacion
+
+    //Relacion entre las tablas tarjeta de credito y cuenta
+    @ManyToOne
+    @JoinColumn(name = "pkcuenta",referencedColumnName = "id")
+    @JsonBackReference
+    private MCuenta cuenta;
 
     //Constructores
     //Lleno
